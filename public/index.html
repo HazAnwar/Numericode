@@ -1,0 +1,47 @@
+<html>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+<body>
+
+  <div id="react"></div>
+
+  <script type="text/babel">
+    class Hello extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = { results: [] };
+        this.updateNumericode = this.updateNumericode.bind(this);
+      }
+
+      updateNumericode = () => {
+        const inputValue = event.target.value;
+        if (inputValue.length > 0) {
+          fetch(`/numericode/${inputValue}`).then(results => results.json()).then(results => this.setState({ results: results.code }))
+        } else {
+          this.setState({ results: [] })
+        }
+      }
+
+      render() {
+        return (
+          <div>
+            <h1>Trussle Numericode Decipher Tool</h1>
+            <h2>Input</h2>
+            <input type="text" placeholder='Enter a numericode' onChange={this.updateNumericode} />
+            {this.state.results.length > 0 ? <div>
+              <h2>Output</h2>
+              <span>{this.state.results}</span>
+            </div> : null}
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<Hello />, document.getElementById('react'))
+  </script>
+
+</body>
+
+</html>
