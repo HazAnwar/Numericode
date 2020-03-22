@@ -1,6 +1,6 @@
 ## Numericode
 
-This is Trussle's Numericode decoding app. It includes ESLint, Babel, Prettier with a Node server and React frontend.
+This is a Numericode decoding app. It includes ESLint, Babel, Prettier with a Node server and React frontend.
 
 ### Getting Started
 
